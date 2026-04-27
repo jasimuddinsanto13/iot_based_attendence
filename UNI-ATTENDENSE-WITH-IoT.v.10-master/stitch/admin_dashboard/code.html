@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>IoT Scholar | Attendance Control</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#4b5d70",
+                        "on-secondary": "#e7fdff",
+                        "secondary-container": "#8df2fc",
+                        "secondary-dim": "#005d63",
+                        "tertiary-fixed-dim": "#b5d3e3",
+                        "surface-container-high": "#e1eaed",
+                        "tertiary-dim": "#3b5764",
+                        "on-secondary-container": "#005b61",
+                        "on-primary-container": "#415366",
+                        "inverse-surface": "#0b0f10",
+                        "on-tertiary-fixed-variant": "#405c69",
+                        "error-dim": "#4e0309",
+                        "on-secondary-fixed": "#00474c",
+                        "tertiary-fixed": "#c3e1f1",
+                        "surface-variant": "#d9e4e8",
+                        "on-surface": "#2a3437",
+                        "on-primary": "#f4f8ff",
+                        "secondary-fixed": "#8df2fc",
+                        "inverse-primary": "#ccdff6",
+                        "surface": "#f8fafb",
+                        "error": "#9f403d",
+                        "on-background": "#2a3437",
+                        "tertiary-container": "#c3e1f1",
+                        "surface-tint": "#4e6073",
+                        "outline": "#727d80",
+                        "primary-container": "#d1e4fb",
+                        "surface-container": "#e8eff1",
+                        "primary-fixed-dim": "#c3d6ed",
+                        "surface-dim": "#cfdce0",
+                        "secondary-fixed-dim": "#7ee4ed",
+                        "error-container": "#fe8983",
+                        "on-primary-fixed": "#2f4153",
+                        "on-tertiary-container": "#36525f",
+                        "surface-bright": "#f8fafb",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f8fafb",
+                        "on-surface-variant": "#566164",
+                        "primary": "#4e6073",
+                        "on-tertiary-fixed": "#233f4c",
+                        "secondary": "#006a71",
+                        "surface-container-low": "#f0f4f6",
+                        "on-error": "#fff7f6",
+                        "outline-variant": "#a9b4b7",
+                        "inverse-on-surface": "#9a9d9e",
+                        "on-error-container": "#752121",
+                        "tertiary": "#476370",
+                        "on-tertiary": "#f3faff",
+                        "surface-container-highest": "#d9e4e8",
+                        "primary-dim": "#425467",
+                        "on-secondary-fixed-variant": "#00666d",
+                        "primary-fixed": "#d1e4fb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-manrope { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-glass {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- SideNavBar Component -->
+<nav class="fixed left-0 h-screen w-64 bg-surface-container-low flex flex-col py-8 z-50">
+<div class="px-8 mb-10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-dim flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<div>
+<h1 class="text-xl font-bold text-slate-800 font-manrope tracking-tight leading-none">IoT Scholar</h1>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold mt-1">Academic Ether</p>
+</div>
+</div>
+</div>
+<div class="flex-1 space-y-1">
+<!-- Dashboard (Active) -->
+<a class="flex items-center px-8 py-3.5 mx-4 text-teal-700 bg-surface-container-high rounded-full font-manrope font-bold transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="dashboard">dashboard</span>
+<span class="text-sm">Dashboard</span>
+</a>
+<a class="flex items-center px-8 py-3.5 mx-4 text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors font-manrope font-semibold" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="calendar_today">calendar_today</span>
+<span class="text-sm">Attendance</span>
+</a>
+<a class="flex items-center px-8 py-3.5 mx-4 text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors font-manrope font-semibold" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="router">router</span>
+<span class="text-sm">Devices</span>
+</a>
+<a class="flex items-center px-8 py-3.5 mx-4 text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors font-manrope font-semibold" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="analytics">analytics</span>
+<span class="text-sm">Reports</span>
+</a>
+<a class="flex items-center px-8 py-3.5 mx-4 text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors font-manrope font-semibold" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="settings">settings</span>
+<span class="text-sm">Settings</span>
+</a>
+</div>
+<div class="px-8 mt-auto space-y-1">
+<button class="w-full mb-6 py-3 bg-gradient-to-br from-teal-600 to-teal-800 text-white rounded-full text-xs font-bold uppercase tracking-widest transition-opacity hover:opacity-90">
+                Live Status
+            </button>
+<a class="flex items-center py-2 text-slate-500 hover:text-slate-800 transition-colors font-manrope font-semibold text-sm" href="#">
+<span class="material-symbols-outlined mr-4 text-lg" data-icon="help_outline">help_outline</span>
+                Support
+            </a>
+<a class="flex items-center py-2 text-slate-500 hover:text-slate-800 transition-colors font-manrope font-semibold text-sm" href="#">
+<span class="material-symbols-outlined mr-4 text-lg" data-icon="logout">logout</span>
+                Logout
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="ml-64 min-h-screen">
+<!-- TopNavBar Component -->
+<header class="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-xl flex justify-between items-center px-12 py-4">
+<div class="flex items-center gap-8 flex-1">
+<h2 class="text-lg font-bold text-slate-900 font-manrope">Attendance Control</h2>
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">search</span>
+<input class="w-full bg-surface-container border-none rounded-full py-2.5 pl-12 pr-4 text-sm focus:ring-2 focus:ring-primary/20 placeholder:text-on-surface-variant/60" placeholder="Search records, students, or devices..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="apps">apps</span>
+</button>
+</div>
+<button class="flex items-center gap-3 px-6 py-2.5 bg-gradient-to-br from-teal-600 to-teal-800 text-white rounded-full text-sm font-bold shadow-md shadow-teal-900/10 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-lg">fact_check</span>
+                    Check-in
+                </button>
+<div class="h-10 w-10 rounded-full overflow-hidden border-2 border-surface-container shadow-sm">
+<img alt="User Avatar" data-alt="close-up portrait of a professional male administrator in a light blue shirt with a clean modern studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJAGcPBwStuX46ZulCQHJ8QwMK2Lyfln03ip55yEbuuIo0ZLWQnLEzdhKzhaX2ZPj10-PIp9FT1Ne2B1q3BcHafplIxM2WK__Wk5Kna1sNHlXSPG9jADDWFJKJcbCvzzgepWHzSuOKSLYsM3uveR-UqJ8-2b34pIZlTVbiMDqmtaH32nhwnK3v5mJG2V1Mn7HNWZOzCP57NN5BljFrtys2YubzZXkCj9olNZho_wZF9GzV_A8o-XGc1AvZ3-BHYlASxpz6zOpOWQhT"/>
+</div>
+</div>
+</header>
+<main class="p-12 space-y-10">
+<!-- Hero Stats Bento Grid -->
+<section class="grid grid-cols-12 gap-6">
+<div class="col-span-12 md:col-span-8 bg-surface-container-lowest p-8 rounded-xl shadow-[0_20px_40px_rgba(42,52,55,0.04)] relative overflow-hidden group">
+<div class="relative z-10 flex flex-col h-full justify-between">
+<div>
+<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-secondary mb-2 block">System Overview</span>
+<h3 class="text-3xl font-extrabold text-on-surface font-manrope tracking-tight max-w-md">Real-time attendance telemetry for Science Block A.</h3>
+</div>
+<div class="flex items-end justify-between mt-12">
+<div class="flex gap-8">
+<div>
+<p class="text-3xl font-bold font-manrope text-on-surface">94.2%</p>
+<p class="text-xs font-medium text-on-surface-variant">Daily Average</p>
+</div>
+<div class="w-px h-10 bg-outline-variant/30"></div>
+<div>
+<p class="text-3xl font-bold font-manrope text-secondary">1,204</p>
+<p class="text-xs font-medium text-on-surface-variant">Active Check-ins</p>
+</div>
+</div>
+<button class="px-5 py-2 text-sm font-bold text-on-surface bg-surface-container hover:bg-surface-container-high transition-colors rounded-full">
+                                View Trends
+                            </button>
+</div>
+</div>
+<!-- Aesthetic background elements -->
+<div class="absolute -right-10 -bottom-10 w-64 h-64 bg-secondary/5 rounded-full blur-3xl group-hover:bg-secondary/10 transition-colors"></div>
+</div>
+<div class="col-span-12 md:col-span-4 bg-primary text-on-primary p-8 rounded-xl flex flex-col justify-between shadow-[0_20px_40px_rgba(78,96,115,0.15)]">
+<div class="flex justify-between items-start">
+<div class="bg-white/10 p-2 rounded-lg backdrop-blur-md">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">router</span>
+</div>
+<span class="flex items-center gap-1.5 px-2.5 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold rounded-full animate-pulse">
+<span class="w-1.5 h-1.5 bg-secondary rounded-full"></span>
+                            LIVE
+                        </span>
+</div>
+<div>
+<h4 class="text-4xl font-bold font-manrope mb-1 tracking-tighter">42/43</h4>
+<p class="text-sm text-on-primary/70 font-medium">IoT Nodes Operational</p>
+</div>
+<div class="space-y-2">
+<div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[97%]"></div>
+</div>
+<p class="text-[10px] text-on-primary/50 text-right font-bold uppercase tracking-wider">Node 08 Offline (Maintenance)</p>
+</div>
+</div>
+</section>
+<!-- Detailed Activity Section -->
+<section class="grid grid-cols-12 gap-10">
+<!-- Recent Activity Table-like List -->
+<div class="col-span-12 lg:col-span-7 space-y-6">
+<div class="flex justify-between items-end">
+<div>
+<h3 class="text-xl font-extrabold font-manrope text-on-surface">Recent Activity</h3>
+<p class="text-sm text-on-surface-variant font-medium">Monitoring live stream of check-in events</p>
+</div>
+<button class="text-xs font-bold text-primary hover:text-primary-dim uppercase tracking-widest flex items-center gap-1">
+                            View Complete History
+                            <span class="material-symbols-outlined text-sm">arrow_forward_ios</span>
+</button>
+</div>
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden">
+<!-- List Item -->
+<div class="flex items-center justify-between p-6 hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-5">
+<div class="w-12 h-12 rounded-full border-2 border-surface-container overflow-hidden shrink-0">
+<img alt="Student photo" data-alt="headshot of a young female student with braided hair smiling in a modern university hallway environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYKtvYx_llvg-dEQm9C7mXBAFkSNxH7N71jbxnoeqrIiJXvRASh5O8ysRa4tlk3eb8o2_spOywDhtYY8X9qQ1wPPuoA_HPdgUxlvcyjS0T1RPQPo3Axcnnnx5B8S-K1TVx21dZO7qlyGtCFZSaTxwptj7ehzllFIpqtgcpwDmPyiMlX2p1f2-5KcaJSEsdqStpFe6YEGRUOUKY4FTOWODZmCuokbuZ4aXmERxL1igU2kivs55OsCn0mHUDJJDxT4IYJ0af2JlXLzOJ"/>
+</div>
+<div>
+<p class="font-bold text-on-surface group-hover:text-primary transition-colors">Elena Rodriguez</p>
+<p class="text-xs text-on-surface-variant">Computer Science • ID: CS-8821</p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="text-right">
+<p class="text-sm font-bold text-on-surface">10:42 AM</p>
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider">Entrance Node 04</p>
+</div>
+<span class="px-3 py-1 bg-secondary-container/30 text-secondary text-[10px] font-extrabold rounded-md">VERIFIED</span>
+</div>
+</div>
+<!-- List Item -->
+<div class="flex items-center justify-between p-6 bg-surface-container/20 hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-5">
+<div class="w-12 h-12 rounded-full border-2 border-surface-container overflow-hidden shrink-0">
+<img alt="Student photo" data-alt="close-up portrait of a young man with curly hair looking directly at camera with a neutral expression against a blurred library background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9DOzlyVF8asUgNErzdD2bIGVS-bAqW-UxDUak-2X20Tq7JO9cB6QVMCuy_hXGC2S_tDOB3shgdLIPouqgnDOSOB10lDo0d01_zW_VJdebappARaJyleze-372_GkecBFOykVeYd-H9D69IosLLfuxT2qhQwarsQuDW4zEsn9oQvNeSCWz5VgsrjVGRgwi6_0u6IXKtY4nPhKOzdLDImHlXDL60pSE85aoG_7alehcQmg5qSO2BD1RQtkDok3x2aLaGtmlREDyCRb8"/>
+</div>
+<div>
+<p class="font-bold text-on-surface group-hover:text-primary transition-colors">Marcus Thorne</p>
+<p class="text-xs text-on-surface-variant">Engineering • ID: EN-9930</p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="text-right">
+<p class="text-sm font-bold text-on-surface">10:39 AM</p>
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider">Lab Node 12</p>
+</div>
+<span class="px-3 py-1 bg-secondary-container/30 text-secondary text-[10px] font-extrabold rounded-md">VERIFIED</span>
+</div>
+</div>
+<!-- List Item -->
+<div class="flex items-center justify-between p-6 hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-5">
+<div class="w-12 h-12 rounded-full border-2 border-surface-container overflow-hidden shrink-0 flex items-center justify-center bg-surface-container text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="font-bold text-on-surface group-hover:text-primary transition-colors">Guest (Unknown)</p>
+<p class="text-xs text-on-surface-variant">Unidentified Tag • RFID: 0x98EF</p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="text-right">
+<p class="text-sm font-bold text-on-surface">10:35 AM</p>
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider">Gate Node 01</p>
+</div>
+<span class="px-3 py-1 bg-error-container/20 text-error text-[10px] font-extrabold rounded-md">REJECTED</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Info Cards Column -->
+<div class="col-span-12 lg:col-span-5 space-y-6">
+<div class="flex items-end h-[60px]">
+<h3 class="text-xl font-extrabold font-manrope text-on-surface">Hardware Status</h3>
+</div>
+<div class="space-y-4">
+<!-- Glass Card -->
+<div class="bg-surface-container-lowest/60 p-6 rounded-xl border border-white/50 bg-glass shadow-sm flex items-center gap-6">
+<div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary scale-125" data-icon="router">router</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<p class="font-bold text-sm">Main Campus RFID Bridge</p>
+<p class="text-[10px] text-secondary font-bold">OPTIMAL</p>
+</div>
+<p class="text-xs text-on-surface-variant">Bandwidth: 450Mbps • Latency: 4ms</p>
+</div>
+</div>
+<!-- Glass Card -->
+<div class="bg-surface-container-lowest/60 p-6 rounded-xl border border-white/50 bg-glass shadow-sm flex items-center gap-6">
+<div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary scale-125">developer_board</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<p class="font-bold text-sm">Biometric Hub - North</p>
+<p class="text-[10px] text-on-surface-variant font-bold">POLLING</p>
+</div>
+<p class="text-xs text-on-surface-variant">Health: 98% • Sync: 0.2s ago</p>
+</div>
+</div>
+<div class="bg-primary/5 p-6 rounded-xl border border-primary/10">
+<h5 class="text-xs font-bold uppercase tracking-widest text-primary mb-4">Maintenance Alerts</h5>
+<div class="flex gap-4">
+<div class="h-10 w-10 bg-error-container/20 rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-error text-lg">warning</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface leading-tight">Node 08 Battery Critical</p>
+<p class="text-xs text-on-surface-variant mt-1">External sensor in Library East requires immediate swap.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body></html>

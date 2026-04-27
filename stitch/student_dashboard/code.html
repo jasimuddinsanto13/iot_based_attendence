@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Dashboard - IoT Scholar</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-primary-fixed-variant": "#4b5d70",
+                "on-secondary": "#e7fdff",
+                "secondary-container": "#8df2fc",
+                "secondary-dim": "#005d63",
+                "tertiary-fixed-dim": "#b5d3e3",
+                "surface-container-high": "#e1eaed",
+                "tertiary-dim": "#3b5764",
+                "on-secondary-container": "#005b61",
+                "on-primary-container": "#415366",
+                "inverse-surface": "#0b0f10",
+                "on-tertiary-fixed-variant": "#405c69",
+                "error-dim": "#4e0309",
+                "on-secondary-fixed": "#00474c",
+                "tertiary-fixed": "#c3e1f1",
+                "surface-variant": "#d9e4e8",
+                "on-surface": "#2a3437",
+                "on-primary": "#f4f8ff",
+                "secondary-fixed": "#8df2fc",
+                "inverse-primary": "#ccdff6",
+                "surface": "#f8fafb",
+                "error": "#9f403d",
+                "on-background": "#2a3437",
+                "tertiary-container": "#c3e1f1",
+                "surface-tint": "#4e6073",
+                "outline": "#727d80",
+                "primary-container": "#d1e4fb",
+                "surface-container": "#e8eff1",
+                "primary-fixed-dim": "#c3d6ed",
+                "surface-dim": "#cfdce0",
+                "secondary-fixed-dim": "#7ee4ed",
+                "error-container": "#fe8983",
+                "on-primary-fixed": "#2f4153",
+                "on-tertiary-container": "#36525f",
+                "surface-bright": "#f8fafb",
+                "surface-container-lowest": "#ffffff",
+                "background": "#f8fafb",
+                "on-surface-variant": "#566164",
+                "primary": "#4e6073",
+                "on-tertiary-fixed": "#233f4c",
+                "secondary": "#006a71",
+                "surface-container-low": "#f0f4f6",
+                "on-error": "#fff7f6",
+                "outline-variant": "#a9b4b7",
+                "inverse-on-surface": "#9a9d9e",
+                "on-error-container": "#752121",
+                "tertiary": "#476370",
+                "on-tertiary": "#f3faff",
+                "surface-container-highest": "#d9e4e8",
+                "primary-dim": "#425467",
+                "on-secondary-fixed-variant": "#00666d",
+                "primary-fixed": "#d1e4fb"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "1rem",
+                "xl": "1.25rem",
+                "full": "9999px"
+            },
+            "fontFamily": {
+                "headline": ["Manrope"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-background selection:bg-secondary-container">
+<!-- SideNavBar (Shared Component Blueprint) -->
+<aside class="fixed left-0 h-screen w-64 bg-slate-50 dark:bg-slate-900 flex flex-col py-8 z-50">
+<div class="px-6 mb-10 flex items-center gap-3">
+<div class="w-10 h-10 bg-gradient-to-br from-teal-600 to-teal-800 rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">router</span>
+</div>
+<div>
+<h1 class="text-xl font-bold text-slate-800 dark:text-slate-100 font-headline tracking-tight leading-none">IoT Scholar</h1>
+<p class="text-[10px] uppercase tracking-widest text-slate-500 mt-1">Academic Ether</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<!-- Active Navigation -->
+<a class="flex items-center gap-3 px-4 py-3 text-teal-700 dark:text-teal-300 bg-slate-200/50 dark:bg-slate-800/50 rounded-r-full font-bold font-headline tracking-tight transition-transform duration-150 active:scale-95 group" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 font-headline font-semibold group" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span>Attendance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 font-headline font-semibold group" href="#">
+<span class="material-symbols-outlined" data-icon="router">router</span>
+<span>Devices</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 font-headline font-semibold group" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span>Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 font-headline font-semibold group" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="px-6 mb-6">
+<button class="w-full py-3 bg-gradient-to-br from-teal-600 to-teal-800 text-white rounded-full font-bold text-sm shadow-lg shadow-teal-900/10 active:scale-95 transition-transform">
+                Live Status
+            </button>
+</div>
+<div class="px-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-2 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 font-headline font-semibold text-sm" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="help_outline">help_outline</span>
+<span>Support</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 font-headline font-semibold text-sm" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="logout">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 min-h-screen">
+<!-- TopNavBar (Shared Component Blueprint) -->
+<header class="sticky top-0 z-40 w-full bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl flex justify-between items-center px-12 py-4">
+<div class="flex items-center gap-8">
+<div class="font-headline text-lg font-bold text-slate-900 dark:text-white">Attendance Control</div>
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="w-full bg-surface-container-high border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/20" placeholder="Search sessions..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3">
+<button class="p-2 text-slate-500 hover:bg-surface-container-high rounded-full transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="apps">apps</span>
+</button>
+</div>
+<button class="bg-gradient-to-br from-teal-600 to-teal-800 text-white px-6 py-2 rounded-full font-bold text-sm transition-opacity hover:opacity-90">
+                    Check-in
+                </button>
+<div class="flex items-center gap-3 pl-4 border-l border-outline-variant/30">
+<div class="text-right">
+<p class="text-xs font-bold text-on-surface">Julian Vance</p>
+<p class="text-[10px] text-on-surface-variant font-medium">B.Sc Computer Science</p>
+</div>
+<img alt="User Avatar" class="w-10 h-10 rounded-full border-2 border-white shadow-sm object-cover" data-alt="close-up portrait of a young man with a slight smile in soft daylight, clean minimal aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3rGrvLDY1dOtE9OxR5nMYfo-EVSZmST5C7Z4gs1NAAxA890wcGTeTQU5w2-TsVHgMxmF8uKhEALD8HHwCmVcNt1AynQHqk9IBwoiD8xCdn1VCAxWBcWulOvpLMTOm43TX2EUy-3vR_UgVKn4k6zmIm4_KtaSzfgHVduRVfO3Azb-iemwHX-xdgSs7DUDh6lwcnL8ks2a9CxwtNJfXHHtJcn3pKlKJi7dumnjDLh1uY5o5wmM4dCN-SPhs3dL6B8JJ7tp76gF9R3Tw"/>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="px-12 py-8 max-w-7xl mx-auto">
+<!-- Hero Greeting -->
+<section class="mb-12">
+<div class="flex items-end justify-between">
+<div>
+<h2 class="font-headline text-4xl font-extrabold tracking-tight text-on-background mb-2">Welcome back, Julian</h2>
+<p class="text-on-surface-variant max-w-lg leading-relaxed">Your IoT attendance record is up to date. You have one upcoming lecture in 45 minutes.</p>
+</div>
+<div class="flex gap-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-secondary-container text-on-secondary-container text-xs font-bold rounded-full">
+<span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
+                            SYSTEM ACTIVE
+                        </span>
+</div>
+</div>
+</section>
+<!-- Bento Grid Overview -->
+<section class="grid grid-cols-12 gap-6 mb-12">
+<!-- Main Status Card -->
+<div class="col-span-12 lg:col-span-7 bg-surface-container-lowest rounded-xl p-8 flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-24 -mt-24 transition-transform group-hover:scale-110"></div>
+<div class="z-10">
+<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-4 block">Semester Compliance</span>
+<div class="flex items-baseline gap-2">
+<span class="font-headline text-7xl font-extrabold text-primary">94.2%</span>
+<span class="text-secondary font-bold text-lg">↑ 2.4%</span>
+</div>
+<p class="text-on-surface-variant mt-2 text-sm">Excellent standing. You are 14.2% above the minimum requirement.</p>
+</div>
+<div class="mt-12 flex gap-4 z-10">
+<div class="flex-1 bg-surface-container p-4 rounded-lg">
+<p class="text-[10px] font-bold uppercase text-on-surface-variant mb-1">Present</p>
+<p class="text-xl font-bold">158 Sessions</p>
+</div>
+<div class="flex-1 bg-surface-container p-4 rounded-lg">
+<p class="text-[10px] font-bold uppercase text-on-surface-variant mb-1">Excused</p>
+<p class="text-xl font-bold">4 Sessions</p>
+</div>
+<div class="flex-1 bg-surface-container p-4 rounded-lg">
+<p class="text-[10px] font-bold uppercase text-on-surface-variant mb-1">Absent</p>
+<p class="text-xl font-bold">2 Sessions</p>
+</div>
+</div>
+</div>
+<!-- Next Class Glass Card -->
+<div class="col-span-12 lg:col-span-5 glass-card rounded-xl p-8 border border-white/40 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-6">
+<span class="px-3 py-1 bg-primary text-white text-[10px] font-bold rounded-full">UPCOMING</span>
+<span class="material-symbols-outlined text-primary" data-icon="sensors">sensors</span>
+</div>
+<h3 class="font-headline text-2xl font-bold text-on-surface mb-1">Advanced Neural Networks</h3>
+<p class="text-on-surface-variant text-sm">Room 402 • IoT Node #8821</p>
+</div>
+<div class="mt-8 flex items-center justify-between">
+<div>
+<p class="text-[10px] font-bold uppercase text-on-surface-variant">Starts In</p>
+<p class="text-3xl font-bold text-on-surface">45<span class="text-sm font-medium ml-1">mins</span></p>
+</div>
+<button class="bg-primary hover:bg-primary-dim text-white p-3 rounded-full flex items-center justify-center transition-all">
+<span class="material-symbols-outlined" data-icon="qr_code_2">qr_code_2</span>
+</button>
+</div>
+</div>
+<!-- Small Activity Tiles -->
+<div class="col-span-12 md:col-span-4 bg-surface-container-lowest rounded-xl p-6 flex items-center gap-4">
+<div class="w-12 h-12 bg-secondary-container rounded-full flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase text-on-surface-variant">Last Session</p>
+<p class="font-bold text-on-surface">Discrete Maths</p>
+<p class="text-[11px] text-secondary font-medium">Verified at 10:02 AM</p>
+</div>
+</div>
+<div class="col-span-12 md:col-span-4 bg-surface-container-lowest rounded-xl p-6 flex items-center gap-4">
+<div class="w-12 h-12 bg-tertiary-container rounded-full flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase text-on-surface-variant">Department Rank</p>
+<p class="font-bold text-on-surface">#12 of 480</p>
+<p class="text-[11px] text-on-surface-variant font-medium">Top 5% Student</p>
+</div>
+</div>
+<div class="col-span-12 md:col-span-4 bg-surface-container-lowest rounded-xl p-6 flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container rounded-full flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined" data-icon="local_fire_department">local_fire_department</span>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase text-on-surface-variant">Active Streak</p>
+<p class="font-bold text-on-surface">18 Days</p>
+<p class="text-[11px] text-on-surface-variant font-medium">Personal Best: 24 Days</p>
+</div>
+</div>
+</section>
+<!-- Asymmetric Grid: Recent Sessions & Schedule -->
+<div class="grid grid-cols-12 gap-10">
+<!-- Recent Sessions (Editorial List) -->
+<section class="col-span-12 lg:col-span-8">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline text-2xl font-bold tracking-tight">Recent Sessions</h3>
+<a class="text-sm font-bold text-primary hover:underline" href="#">View History</a>
+</div>
+<div class="space-y-3">
+<!-- Session Row -->
+<div class="group bg-surface-container-low hover:bg-surface-container-lowest transition-all p-5 rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-6">
+<div class="w-14 h-14 bg-white rounded-lg flex flex-col items-center justify-center border-l-4 border-secondary shadow-sm">
+<span class="text-[10px] font-bold uppercase text-on-surface-variant">OCT</span>
+<span class="text-xl font-bold text-on-surface leading-none">24</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface text-lg">Applied Cryptography</h4>
+<p class="text-sm text-on-surface-variant">Prof. Sarah Jenkins • Lab 301</p>
+</div>
+</div>
+<div class="text-right">
+<span class="block font-headline font-bold text-on-surface">09:00 — 11:00</span>
+<span class="text-xs font-bold text-secondary uppercase tracking-wider">Success</span>
+</div>
+</div>
+<!-- Session Row -->
+<div class="group bg-surface-container-low hover:bg-surface-container-lowest transition-all p-5 rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-6">
+<div class="w-14 h-14 bg-white rounded-lg flex flex-col items-center justify-center border-l-4 border-secondary shadow-sm">
+<span class="text-[10px] font-bold uppercase text-on-surface-variant">OCT</span>
+<span class="text-xl font-bold text-on-surface leading-none">23</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface text-lg">Digital Governance</h4>
+<p class="text-sm text-on-surface-variant">Seminar Hall B • Dr. Aris Thorne</p>
+</div>
+</div>
+<div class="text-right">
+<span class="block font-headline font-bold text-on-surface">14:00 — 16:00</span>
+<span class="text-xs font-bold text-secondary uppercase tracking-wider">Success</span>
+</div>
+</div>
+<!-- Session Row -->
+<div class="group bg-surface-container-low hover:bg-surface-container-lowest transition-all p-5 rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-6">
+<div class="w-14 h-14 bg-white rounded-lg flex flex-col items-center justify-center border-l-4 border-primary shadow-sm">
+<span class="text-[10px] font-bold uppercase text-on-surface-variant">OCT</span>
+<span class="text-xl font-bold text-on-surface leading-none">23</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface text-lg">Professional Ethics</h4>
+<p class="text-sm text-on-surface-variant">Virtual Hub • Dean’s Office</p>
+</div>
+</div>
+<div class="text-right">
+<span class="block font-headline font-bold text-on-surface">11:00 — 12:00</span>
+<span class="text-xs font-bold text-on-primary-fixed-variant uppercase tracking-wider">Excused</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Sidebar Content: Enrolled Classes Tiles -->
+<aside class="col-span-12 lg:col-span-4">
+<h3 class="font-headline text-2xl font-bold tracking-tight mb-6">Course Modules</h3>
+<div class="grid grid-cols-1 gap-4">
+<div class="bg-surface-container-low p-6 rounded-xl relative overflow-hidden group hover:shadow-lg transition-all">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl" data-icon="memory">memory</span>
+</div>
+<h5 class="text-sm font-bold text-on-surface uppercase tracking-widest mb-1">COMP-402</h5>
+<h4 class="font-headline text-lg font-extrabold text-on-surface mb-4">Neural Networks</h4>
+<div class="w-full bg-surface-container-highest h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[88%]"></div>
+</div>
+<p class="text-[10px] font-bold text-on-surface-variant mt-2">88% Attendance</p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl relative overflow-hidden group hover:shadow-lg transition-all">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl" data-icon="lock">lock</span>
+</div>
+<h5 class="text-sm font-bold text-on-surface uppercase tracking-widest mb-1">SEC-310</h5>
+<h4 class="font-headline text-lg font-extrabold text-on-surface mb-4">Cryptography</h4>
+<div class="w-full bg-surface-container-highest h-1 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[96%]"></div>
+</div>
+<p class="text-[10px] font-bold text-on-surface-variant mt-2">96% Attendance</p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl relative overflow-hidden group hover:shadow-lg transition-all">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl" data-icon="language">language</span>
+</div>
+<h5 class="text-sm font-bold text-on-surface uppercase tracking-widest mb-1">GOV-220</h5>
+<h4 class="font-headline text-lg font-extrabold text-on-surface mb-4">Digital Governance</h4>
+<div class="w-full bg-surface-container-highest h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[100%]"></div>
+</div>
+<p class="text-[10px] font-bold text-on-surface-variant mt-2">100% Attendance</p>
+</div>
+</div>
+<button class="w-full mt-6 py-4 border-2 border-dashed border-outline-variant rounded-xl text-on-surface-variant font-bold text-sm hover:bg-surface-container-high transition-colors">
+                        + Add Module
+                    </button>
+</aside>
+</div>
+</div>
+</main>
+</body></html>

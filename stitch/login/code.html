@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | UNI-ATTENDENSE-WITH-IoT</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Manrope:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#4b5d70",
+                        "on-secondary": "#e7fdff",
+                        "secondary-container": "#8df2fc",
+                        "secondary-dim": "#005d63",
+                        "tertiary-fixed-dim": "#b5d3e3",
+                        "surface-container-high": "#e1eaed",
+                        "tertiary-dim": "#3b5764",
+                        "on-secondary-container": "#005b61",
+                        "on-primary-container": "#415366",
+                        "inverse-surface": "#0b0f10",
+                        "on-tertiary-fixed-variant": "#405c69",
+                        "error-dim": "#4e0309",
+                        "on-secondary-fixed": "#00474c",
+                        "tertiary-fixed": "#c3e1f1",
+                        "surface-variant": "#d9e4e8",
+                        "on-surface": "#2a3437",
+                        "on-primary": "#f4f8ff",
+                        "secondary-fixed": "#8df2fc",
+                        "inverse-primary": "#ccdff6",
+                        "surface": "#f8fafb",
+                        "error": "#9f403d",
+                        "on-background": "#2a3437",
+                        "tertiary-container": "#c3e1f1",
+                        "surface-tint": "#4e6073",
+                        "outline": "#727d80",
+                        "primary-container": "#d1e4fb",
+                        "surface-container": "#e8eff1",
+                        "primary-fixed-dim": "#c3d6ed",
+                        "surface-dim": "#cfdce0",
+                        "secondary-fixed-dim": "#7ee4ed",
+                        "error-container": "#fe8983",
+                        "on-primary-fixed": "#2f4153",
+                        "on-tertiary-container": "#36525f",
+                        "surface-bright": "#f8fafb",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f8fafb",
+                        "on-surface-variant": "#566164",
+                        "primary": "#4e6073",
+                        "on-tertiary-fixed": "#233f4c",
+                        "secondary": "#006a71",
+                        "surface-container-low": "#f0f4f6",
+                        "on-error": "#fff7f6",
+                        "outline-variant": "#a9b4b7",
+                        "inverse-on-surface": "#9a9d9e",
+                        "on-error-container": "#752121",
+                        "tertiary": "#476370",
+                        "on-tertiary": "#f3faff",
+                        "surface-container-highest": "#d9e4e8",
+                        "primary-dim": "#425467",
+                        "on-secondary-fixed-variant": "#00666d",
+                        "primary-fixed": "#d1e4fb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .glass-effect {
+            backdrop-filter: blur(24px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+        .ambient-shadow {
+            box-shadow: 0 20px 40px rgba(42, 52, 55, 0.06);
+        }
+        .button-gradient {
+            background: linear-gradient(135deg, #4e6073 0%, #425467 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Main Container: Note: Navigation is suppressed for focused transactional journey -->
+<main class="min-h-screen flex items-center justify-center p-6 sm:p-12 relative overflow-hidden">
+<!-- Subtle Academic Ether Background Elements -->
+<div class="absolute top-0 left-0 w-full h-full pointer-events-none opacity-40">
+<div class="absolute top-[-10%] left-[-5%] w-[40%] h-[40%] rounded-full bg-secondary-container blur-[120px]"></div>
+<div class="absolute bottom-[-10%] right-[-5%] w-[40%] h-[40%] rounded-full bg-primary-container blur-[120px]"></div>
+</div>
+<div class="w-full max-w-[440px] z-10">
+<!-- Brand Anchor -->
+<div class="flex flex-col items-center mb-10 text-center">
+<div class="mb-6 h-14 w-14 flex items-center justify-center rounded-xl bg-surface-container-highest text-primary">
+<span class="material-symbols-outlined text-4xl" data-icon="router">router</span>
+</div>
+<h2 class="font-headline text-3xl font-extrabold tracking-tight text-on-surface mb-2">Welcome Back</h2>
+<p class="text-on-surface-variant text-sm font-medium tracking-wide">Enter your credentials to access the IoT Scholar ecosystem</p>
+</div>
+<!-- Login Card -->
+<div class="bg-surface-container-lowest rounded-xl p-8 sm:p-10 ambient-shadow">
+<form class="space-y-6">
+<!-- Email Field -->
+<div class="space-y-2">
+<label class="block text-[11px] font-bold uppercase tracking-widest text-on-surface-variant ml-1" for="email">Email Address</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="alternate_email">alternate_email</span>
+</div>
+<input class="w-full pl-11 pr-4 py-3.5 bg-surface-container-highest border-none rounded-lg text-on-surface placeholder:text-outline-variant focus:ring-2 focus:ring-primary/20 transition-all duration-200 outline-none" id="email" name="email" placeholder="name@university.edu" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2">
+<div class="flex justify-between items-center ml-1">
+<label class="block text-[11px] font-bold uppercase tracking-widest text-on-surface-variant" for="password">Password</label>
+<a class="text-[11px] font-bold uppercase tracking-widest text-secondary hover:text-secondary-dim transition-colors" href="#">Forgot password?</a>
+</div>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="lock">lock</span>
+</div>
+<input class="w-full pl-11 pr-4 py-3.5 bg-surface-container-highest border-none rounded-lg text-on-surface placeholder:text-outline-variant focus:ring-2 focus:ring-primary/20 transition-all duration-200 outline-none" id="password" name="password" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<!-- Remember Me (Contextual addition for high-end UI) -->
+<div class="flex items-center space-x-3 ml-1">
+<input class="w-4 h-4 rounded border-none bg-surface-container-highest text-secondary focus:ring-0 focus:ring-offset-0" id="remember" type="checkbox"/>
+<label class="text-xs font-medium text-on-surface-variant cursor-pointer" for="remember">Keep me signed in for 30 days</label>
+</div>
+<!-- CTA Action -->
+<button class="w-full button-gradient text-on-primary font-bold py-4 rounded-full shadow-lg shadow-primary/10 hover:opacity-90 active:scale-[0.98] transition-all duration-150 flex items-center justify-center gap-2" type="submit">
+<span>Sign In</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="login">login</span>
+</button>
+</form>
+<!-- Divider Alternative: Color shift vs 1px line -->
+<div class="mt-10 pt-8 border-t border-outline-variant/10 text-center">
+<p class="text-on-surface-variant text-xs mb-4">First time here?</p>
+<button class="w-full py-3 px-6 rounded-full border border-outline-variant/20 text-on-surface font-semibold text-sm hover:bg-surface-container transition-colors">
+                        Request Institutional Access
+                    </button>
+</div>
+</div>
+<!-- Footer Meta -->
+<footer class="mt-8 text-center">
+<p class="text-[10px] text-outline uppercase tracking-widest font-bold">
+                    UNI-ATTENDENSE-WITH-IoT © 2024 Academic Ether System
+                </p>
+<div class="mt-4 flex justify-center gap-6">
+<a class="text-[10px] text-on-surface-variant hover:text-on-surface font-medium transition-colors" href="#">Support</a>
+<a class="text-[10px] text-on-surface-variant hover:text-on-surface font-medium transition-colors" href="#">Privacy</a>
+<a class="text-[10px] text-on-surface-variant hover:text-on-surface font-medium transition-colors" href="#">System Status</a>
+</div>
+</footer>
+</div>
+<!-- Right Side Asymmetric Visual Element (Hidden on mobile) -->
+<div class="hidden lg:block absolute right-12 top-1/2 -translate-y-1/2 w-[320px]">
+<div class="bg-surface-container-lowest p-6 rounded-xl ambient-shadow rotate-2">
+<div class="flex items-center justify-between mb-4">
+<span class="text-[10px] font-bold text-secondary uppercase tracking-widest flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                        Live Network
+                    </span>
+<span class="text-[10px] text-outline font-medium">14:02 PM</span>
+</div>
+<div class="space-y-4">
+<div class="h-2 w-3/4 bg-surface-container-high rounded-full"></div>
+<div class="h-2 w-full bg-surface-container-high rounded-full"></div>
+<div class="h-2 w-1/2 bg-surface-container-high rounded-full"></div>
+</div>
+<div class="mt-6 flex gap-2">
+<div class="h-10 w-10 rounded-lg bg-secondary-container"></div>
+<div class="h-10 w-10 rounded-lg bg-primary-container"></div>
+<div class="h-10 w-10 rounded-lg bg-tertiary-container"></div>
+</div>
+</div>
+<!-- Ghost background card -->
+<div class="absolute -z-10 -bottom-8 -left-8 w-full h-full bg-surface-container-low rounded-xl -rotate-3 opacity-50"></div>
+</div>
+</main>
+</body></html>
